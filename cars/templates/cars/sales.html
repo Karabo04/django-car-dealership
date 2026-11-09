@@ -1,0 +1,24 @@
+{% extends 'cars/base.html' %}
+{% block content %}
+<h2 style="margin-bottom:20px;">Sales</h2>
+<div class="card-modern">
+<table class="table-modern">
+   
+    <tr><th>CAR</th><th>CUSTOMER</th><th>AMOUNT</th><th>STATUS</th><th>ACTION</th></tr>
+     {% for sale in sales %}
+    <tr>
+      <td>{{ sale.car.brand }} {{ sale.car.model }}</td>
+      <td>{{ sale.customer }}</td>
+      <td>R{{ sale.price }}</td>
+      <td>{{ sale.status }}</td>
+      <td>
+        <a href="{% url 'update_sale' sale.id %}" class="btn-view">Update</a>
+        {% if request.user.is_superuser or request.user.groups.all.0.name == 'admin' %}
+          <a href="{% url 'delete_sale' sale.id %}" class="btn-view" style="color:red; border-color:red;">Delete</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+  <div class="card-modern" style="border-left:4px solid orange;">
+    <h4>Pending</h4>
+    <h2>{{ pending }}</h2>
+  </div>
+  <div class="card-modern" style="border-left:4px solid blue;">
+    <h4>Out for Delivery</h4>
+    <h2>{{ out_for_delivery }}</h2>
+  </div>
+  <div class="card-modern" style="border-left:4px solid green;">
+    <h4>Delivered</h4>
+    <h2>{{ delivered }}</h2>
+  </div>
+  <div class="card-modern" style="border-left:4px solid red;">
+    <h4>Cancelled</h4>
+    <h2>{{ cancelled }}</h2>
+  </div>
+</div>
+<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px;">
+  <div class="card-modern"><h4>Total Cars</h4><h2>{{ total_cars }}</h2></div>
+  <div class="card-modern"><h4>Total Customers</h4><h2>{{ total_customers }}</h2></div>
+  <div class="card-modern"><h4>Total Sales</h4><h2>{{ total_sales }}</h2></div>
+</div>

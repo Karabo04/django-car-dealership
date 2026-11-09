@@ -1,0 +1,36 @@
+{% extends 'cars/base.html' %}
+
+{% block title %}Dashboard - Thenvalai{% endblock %}
+
+{% block content %}
+<h2 style="margin-bottom:20px;">Dashboard</h2>
+
+{% include 'cars/status.html' %}
+
+<div class="card-modern" style="margin-top:20px; background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+  <h4 style="margin-bottom:12px;">Recent Sales</h4>
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>CAR</th>
+        <th>CUSTOMER</th>
+        <th>DATE</th>
+        <th>PRICE</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sale in sales %}
+      <tr>
+        <td>{{ sale.car.brand }} {{ sale.car.model }}</td>
+        <td>{{ sale.customer.name }}</td>
+        <td>{{ sale.date_sold }}</td>
+        <td>R{{ sale.price }}</td>
+        <td ><a class="btn btn-sm btn-info" href="{% url 'update_sale' sale.id %} ">Update</a></td>
+        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_sale' sale.id %}" >Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

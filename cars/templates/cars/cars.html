@@ -1,0 +1,41 @@
+{% extends 'cars/base.html' %}
+{% block title %}Cars - Thenvalai{% endblock %}
+{% block content %}
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+  <h2>Inventory ({{ cars.count }})</h2>
+  
+  <form method="GET" style="display:flex; gap:8px;">
+    <input name="q" value="{{ request.GET.q }}" placeholder="Search brand/model..." style="padding:8px 14px; border-radius:100px; border:1px solid var(--border); background:var(--card); color:var(--text);">
+    
+    <select name="fuel_type" style="padding:8px 12px; border-radius:100px; border:1px solid var(--border); background:var(--card);">
+      <option value="">All Fuel</option>
+      <option value="petrol" {% if request.GET.fuel_type == 'petrol' %}selected{% endif %}>Petrol</option>
+      <option value="diesel" {% if request.GET.fuel_type == 'diesel' %}selected{% endif %}>Diesel</option>
+      <option value="electric" {% if request.GET.fuel_type == 'electric' %}selected{% endif %}>Electric</option>
+      <option value="hybrid" {% if request.GET.fuel_type == 'hybrid' %}selected{% endif %}>Hybrid</option>
+    </select>
+    
+    <button type="submit" class="btn-nav" style="padding:8px 16px;">Filter</button>
+    <a href="{% url 'cars' %}" class="btn-nav" style="background:var(--border); color:var(--text); padding:8px 16px;">Clear</a>
+  </form>
+</div>
+
+<div class="cars-grid">
+  {% for car in cars %}
+  <div class="card-modern">
+    {% if car.image %}
+    <img src="{{ car.image.url }}" style="width:100%; height:160px; object-fit:cover; border-radius:14px; margin-bottom:12px;">
+    {% else %}
+    <div class="car-img"></div>  <!-- placeholder if no image -->
+    {% endif %}
+    <h4>{{ car.brand }} {{ car.model }}</h4>
+    <p class="car-meta">{{ car.year }} • {{ car.mileage }} km • {{ car.fuel_type }}</p>
+    <div class="price-row"><span class="price">R{{ car.price }}</span><a href="{% url 'car_view' car.id %}" class="btn-view">View</a></div>
+  </div>
+  {% empty %}
+  <p>No cars found for "{{ request.GET.q }}"</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

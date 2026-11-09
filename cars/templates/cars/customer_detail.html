@@ -1,0 +1,23 @@
+{% extends 'cars/base.html' %}
+{% block content %}
+<div style="display:grid; grid-template-columns:1.2fr .8fr; gap:24px;">
+  <div class="card-modern">
+    <div style="height:380px; background:var(--border); border-radius:16px;"></div>
+  </div>
+  <div class="card-modern">
+    <h2>{{ customer.name }} {{ customer.surname }}</h2>
+    <p class="car-meta"><strong>Phone:</strong> {{ customer.phone }}</p>
+    <p class="car-meta"><strong>Email:</strong> {{ customer.email }}</p>
+    <p class="car-meta"><strong>ID:</strong> {{ customer.id_number }}</p>
+    <p class="car-meta"><strong>Address:</strong> {{ customer.address }}</p>
+    
+    <hr style="margin:16px 0;">
+    <h4>Sales</h4>
+    {% for sale in customer.sale_set.all %}
+      <p>{{ sale.car.brand }} {{ sale.car.model }} - R{{ sale.price }} - {{ sale.status }}</p>
+    {% empty %}
+      <p>No sales yet</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

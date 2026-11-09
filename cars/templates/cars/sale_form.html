@@ -1,0 +1,16 @@
+{% extends 'cars/base.html' %}
+{% block content %}
+<h2>Create New Sale</h2>
+<div class="card-modern" style="background:white; padding:25px; border-radius:12px; max-width:600px;">
+  <form method="POST">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+      {{ form.errors }}
+      {{ form }}
+      <hr>
+    {% endfor %}
+    <input type="submit" class="btn btn-primary mt-3" value="Create Sale">
+  </form>
+</div>
+{% endblock %}

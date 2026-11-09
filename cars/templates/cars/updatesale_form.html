@@ -1,0 +1,12 @@
+{% extends 'cars/base.html' %}
+{% block content %}
+<div class="card-modern">
+  <h2>Update Sale - {{ sale.car.brand }} {{ sale.car.model }} for {{ sale.customer.name }}</h2>
+  <p>Sale ID: {{ sale.id }}</p>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn-nav">Update</button>
+  </form>
+</div>
+{% endblock %}
