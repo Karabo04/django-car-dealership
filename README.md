@@ -72,7 +72,7 @@ Install any additional dependencies required by the project.
 
 Create a ".env" file in the project root and add your own Django secret key:
 
-django_secret_key=your-own-secret-key
+DJANGO_SECRET_KEY=your-own-secret-key
 
 Important: Never upload your ".env" file or expose your secret key publicly.
 
